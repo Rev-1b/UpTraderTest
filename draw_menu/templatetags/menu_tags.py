@@ -25,10 +25,12 @@ def draw_menu(context, menu_name):
 
 def _create_menu_dict(query: QuerySet, item: MenuItemModel):
     menu = {}
-    while item.parent:
+    while item:
         item_children = query.filter(parent=item)
         if item_children:
             menu[item] = item_children
+
+        item = item.parent
 
     return menu
 
