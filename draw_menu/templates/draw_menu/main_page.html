@@ -1,4 +1,5 @@
 {% load static %}
+{% load menu_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,17 +18,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Выпадающий список
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Действие</a></li>
-                        <li><a class="dropdown-item" href="#">Другое действие</a></li>
-                        <li><a class="dropdown-item" href="#">Что-то еще здесь</a></li>
-                    </ul>
-                </li>
+                {% for menu_obj in head_menu %}
+                    <li class="nav-item">
+                        <a href="{{ menu_obj.get_absolute_url }}">{{ menu_obj.name }}</a>
+                        {% if menu_slug == menu_obj.slug %}
+                            {% draw_menu menu_obj.name %}
+                        {% endif %}
+                    </li>
+                {% endfor %}
             </ul>
         </div>
     </div>

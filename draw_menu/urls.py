@@ -2,5 +2,7 @@ from django.urls import path
 from draw_menu.views import MainPageView
 
 urlpatterns = [
-    path('', MainPageView.as_view(), name='index')
+    path('', MainPageView.as_view(), name='index'),
+    path('<slug:menu_slug>/', MainPageView.as_view(), name='menu'),
+    path('<slug:menu_slug>/<slug:item_slug>', MainPageView.as_view(), name='menu_item'),
 ]
