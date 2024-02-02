@@ -9,13 +9,7 @@ class MainPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['head_menu'] = HeadMenuModel.objects.all()
-        if self.kwargs.get('menu_slug'):
-            context['menu_slug'] = self.kwargs.get('menu_slug')
-
-        if self.kwargs.get('item_slug'):
-            context['item_slug'] = self.kwargs.get('item_slug')
-
+        context['params'] = self.kwargs
         return context
-
 
 

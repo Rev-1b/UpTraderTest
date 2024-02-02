@@ -15,7 +15,7 @@ class HeadMenuModel(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('menu',  kwargs={'menu_slug': self.slug})
+        return reverse('menu', kwargs={'menu_slug': self.slug})
 
 
 class MenuItemModel(models.Model):
@@ -34,11 +34,3 @@ class MenuItemModel(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse(viewname='menu_item', kwargs={'menu_slug': self.head_menu.slug, 'item_slug': self.slug})
-
-    def _get_path_helper(self):
-        return self.parent._get_path_helper() + [self.slug] if self.parent else [self.slug]
-
-    def get_children(self):
-        return self.children.all()

@@ -22,14 +22,23 @@
 {#        {% endif %}#}
 {#    {% endfor %}#}
 {#</ul>#}
+<br><br><br><br>
+-----{{ a|get_item:a1 }}
 
-<ul>
-    {% if not item_slug %}
-        {% for item in menu %}
-            <a href="{% url 'menu' menu_slug=item.slug %}">{{ item.name }}</a>
-        {% endfor %}
-    {% else %}
-
-    {% endif %}
-
-</ul>
+{#<ul>#}
+{#    {% for item in menu.curr %}#}
+{#        <li>#}
+{#            {{ item }}#}
+{#        </li>#}
+{#        {% if item in menu %}#}
+{#            <li>#}
+{#                <span>* {{ item.name }}</span>#}
+{#            {% include 'draw_menu/menu.html' with curr=item %}#}
+{#            </li>#}
+{#        {% else %}#}
+{#            <li>#}
+{#                <a href="{% url 'menu_item' menu_slug=item.head_menu.slug item_slug=item.slug %}">{{ item.name }}</a>#}
+{#            </li>#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+{#</ul>#}

@@ -9,27 +9,15 @@
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Панель навигации</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
-                aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-            <ul class="navbar-nav">
-                {% for menu_obj in head_menu %}
-                    <li class="nav-item">
-                        <a href="{{ menu_obj.get_absolute_url }}">{{ menu_obj.name }}</a>
-                        {% if menu_slug == menu_obj.slug %}
-                            {% draw_menu menu_obj.name %}
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-</nav>
+{% for menu_obj in head_menu %}
+    <li class="nav-item">
+        <a href="{{ menu_obj.get_absolute_url }}">{{ menu_obj.name }}</a>
+        {% if params.menu_slug == menu_obj.slug %}
+            {% draw_menu menu_obj.name %}
+        {% endif %}
+    </li>
+{% endfor %}
+
 </body>
 
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
