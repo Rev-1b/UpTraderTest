@@ -1,6 +1,5 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView
-from draw_menu.models import HeadMenuModel, MenuItemModel
+from draw_menu.models import HeadMenuModel
 
 
 class MainPageView(TemplateView):

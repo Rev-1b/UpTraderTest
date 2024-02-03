@@ -1,8 +1,7 @@
 from django import template
-from django.db.models import QuerySet
 from collections import defaultdict
 
-from draw_menu.models import HeadMenuModel, MenuItemModel
+from draw_menu.models import MenuItemModel
 
 register = template.Library()
 
@@ -26,7 +25,7 @@ def draw_menu(context, menu_name):
 
     for item in menu_items:
         parent_item_dict[str(item.parent)].append(item)
-        item_parent_dict[item] = item.parent
+        item_parent_dict[str(item)] = item.parent
 
     if item_slug:
         item = _find_item(menu_items, item_slug)
@@ -38,18 +37,20 @@ def draw_menu(context, menu_name):
     return {'menu': menu_temp, 'curr': 'main', 'menu_slug': menu_slug}
 
 
-def _create_menu_dict(parent_item: dict, item_parent: dict, item: MenuItemModel):
+def _create_menu_dict(parent_item: dict[str, list[MenuItemModel]],
+                      item_parent: dict[str, MenuItemModel],
+                      item: MenuItemModel) -> dict[MenuItemModel, list[MenuItemModel]]:
     menu = {}
     while item:
         item_children = parent_item[str(item)]
         menu[item] = item_children
 
-        item = item_parent[item]
+        item = item_parent[str(item)]
 
     return menu
 
 
-def _find_item(lst, item_slug):
+def _find_item(lst: list[MenuItemModel], item_slug: str) -> MenuItemModel:
     for item in lst:
         if item.slug == item_slug:
             return item
