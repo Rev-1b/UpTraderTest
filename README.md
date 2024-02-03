@@ -3,7 +3,7 @@
   <a href="https://github.com/Rev-1b/MirGovoritTest">
   </a>
 
-  <h3 align="center">Тех-задание для 'МирГоворит'</h3>
+  <h3 align="center">Тех-задание для 'UpTrader'</h3>
 
   <p align="center">
     На всякий случай добавляю простенький README, вдруг кто-то реально прочитает.
